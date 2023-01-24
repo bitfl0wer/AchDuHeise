@@ -7,8 +7,13 @@ dbsql = SQLAlchemy()
 
 
 class Article(dbsql.Model, SerializerMixin):
-    __tablename__ = "articles"
+    __tablename__ = "articles_cache"
     url = dbsql.Column(dbsql.String(256), primary_key=True)
     title = dbsql.Column(dbsql.String(128))
     subtitle = dbsql.Column(dbsql.String(256))
-    content = dbsql.column(dbsql.String(10000))
+    authors = dbsql.Column(dbsql.JSON())
+    date = dbsql.Column(dbsql.Date())
+    time = dbsql.Column(dbsql.Time())
+    image = dbsql.Column(dbsql.String())
+    content = dbsql.Column(dbsql.String())
+    cached_timestamp = dbsql.Column(dbsql.BigInteger())
