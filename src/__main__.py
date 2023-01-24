@@ -15,7 +15,7 @@ app = Flask(
 )
 
 app.config["SECRET_KEY"] = environ.get("SECRET_KEY")
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///cache.sqlite"
 db.init_app(app)
 
 if __name__ == "__main__":
