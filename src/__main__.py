@@ -3,6 +3,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from os import environ
 from src.models import dbsql as db
+from src.page import index
 
 load_dotenv()
 
@@ -20,4 +21,5 @@ db.init_app(app)
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
+    app.register_blueprint(index.index)
     app.run(port=8080, debug=True)
