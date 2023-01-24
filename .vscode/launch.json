@@ -5,11 +5,14 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "Python-Modul",
+			"name": "Launch Application",
 			"type": "python",
 			"request": "launch",
 			"module": "src",
-			"justMyCode": true
+			"justMyCode": true,
+			"env": {
+				"SECRET_KEY": "DEBUGKEYJqwpPi*d3!Vd$65!r!EG"
+			}
 		}
 	]
 }
