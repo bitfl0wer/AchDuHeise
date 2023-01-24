@@ -26,7 +26,6 @@ def scrape_heise_article(url):
         [p.get_text() for p in soup.find(class_="article-content").find_all("p")]
     )
     text_str = str()
-
     article["images"] = bleach_list(
         [img["src"] for img in soup.find(class_="article-image").find_all("img")]
     )
