@@ -1,20 +1,7 @@
 import requests, bleach
 from bs4 import BeautifulSoup
 from typing import List
-
-
-def bleach_list(list_str: List[str]) -> list:
-    """Sanitizes a list of strings with bleach.clean()
-
-    Args:
-        list_str (List[str]): A list containing only str elements.
-
-    Returns:
-        list: A sanitized list.
-    """
-    for item in list_str:
-        list_str[list_str.index(item)] = bleach.clean(item)
-    return list_str
+from src.scraping.formatter import bleach_list
 
 
 def scrape_heise_article(url):
@@ -35,7 +22,11 @@ def scrape_heise_article(url):
     except AttributeError:
         article["date"] = soup.find(class_="a-datetime__time").get_text()
     article["date"] = bleach.clean(article.get("date"))
-    # article["text"] = soup.find(class_="article-content").get_text()
+    text = bleach_list(
+        [p.get_text() for p in soup.find(class_="article-content").find_all("p")]
+    )
+    text_str = str()
+
     article["images"] = bleach_list(
         [img["src"] for img in soup.find(class_="article-image").find_all("img")]
     )
