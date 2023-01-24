@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from typing import List
 from src.scraping.formatter import bleach_list
 
-
+# needs cleanup
 def scrape_heise_article(url):
     page = requests.get(url)
     soup = BeautifulSoup(page.text, "html.parser")
