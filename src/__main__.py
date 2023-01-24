@@ -2,7 +2,7 @@ from flask import Flask
 from pathlib import Path
 from dotenv import load_dotenv
 from os import environ
-from src.database.models import dbsql as db
+from src.models import dbsql as db
 
 load_dotenv()
 
@@ -14,7 +14,7 @@ app = Flask(
 )
 
 app.config["SECRET_KEY"] = environ.get("SECRET_KEY")
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database/database.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.sqlite"
 db.init_app(app)
 
 if __name__ == "__main__":
