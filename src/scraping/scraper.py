@@ -151,6 +151,7 @@ def scrape_article(url: str) -> Article:
         timestamp_curr = int(time.time())
         timestamp_article = int(article.cached_timestamp)
         if not timestamp_curr - timestamp_article > 3600:
+            print(f"Loaded article from cache: {article.url}")
             return Article(
                 title=article.title,
                 subtitle=article.subtitle,
@@ -178,4 +179,5 @@ def scrape_article(url: str) -> Article:
         cached_timestamp=int(time.time()),
     )
     article.cache()
+    print(f"Cached new article: {article.url}")
     return article
