@@ -44,6 +44,20 @@ class Article:
 
     def cache(self) -> None:
         """caches the article by adding it to the database."""
+        database_article = CachedArticle.query.filter(
+            CachedArticle.url == remove_url_parameters(self.url)
+        ).one_or_none()
+        if database_article:
+            database_article.url = self.url
+            database_article.title = self.title
+            database_article.subtitle = self.subtitle
+            database_article.authors = self.authors
+            database_article.date_article = self.date_article
+            database_article.time_article = self.time_article
+            database_article.image = self.image
+            database_article.content = self.content
+            database_article.cached_timestamp = int(time.time())
+            return db.session.commit()
         database_article = CachedArticle(
             url=self.url,
             title=self.title,
