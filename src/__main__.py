@@ -1,20 +1,14 @@
 from flask import Flask
 from pathlib import Path
-from dotenv import load_dotenv
-from os import environ
+import os
 from src.models import dbsql as db
 from src.page import index
-
-load_dotenv()
-
-if "SECRET_KEY" not in environ:
-    raise RuntimeError("SECRET_KEY environment variable not set, exiting.")
 
 app = Flask(
     __name__, template_folder=Path("page/templates"), static_folder=Path("page/static")
 )
 
-app.config["SECRET_KEY"] = environ.get("SECRET_KEY")
+app.config["SECRET_KEY"] = os.urandom(24).hex()
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///cache.sqlite"
 db.init_app(app)
 

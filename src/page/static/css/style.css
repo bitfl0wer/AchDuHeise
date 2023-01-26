@@ -1,0 +1,17 @@
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dark-mode {
+  background-color: #333;
+  color: white;
+}
+
+/* add margin to the left and right*/
+.center-horizontal {
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -4,9 +4,23 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../static/css/bootstrap-reboot.min.css" />
+		<link rel="stylesheet" href="../static/css/style.css" />
 		<title>AchDuHeise! - Viewer</title>
 	</head>
-	<body>
-		<h1></h1>
+	<body class="center-horizontal dark-mode">
+		<h1>AchDuHeise!</h1>
+		<form method="post">
+			<label for="url-input">heise.de Artikel-URL:</label><br />
+			<input name="url-input" type="text" />
+			<input type="submit" value="Artikel lesen" />
+		</form>
+		<br />
+		<h2>{{ article.title }}</h2>
+		<p>{{ article.subtitle }}</p>
+		<img src="{{ article.image }}" />
+		<p><b>{{ article.date_article}}, {{ article.time_article }}</b></p>
+		<p>Autor*innen: {{ article.authors }}</p>
+		<p>{{ article.content }}</p>
 	</body>
 </html>

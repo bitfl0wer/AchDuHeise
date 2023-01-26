@@ -4,14 +4,17 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../static/css/bootstrap-reboot.min.css" />
+		<link rel="stylesheet" href="../static/css/style.css" />
 		<title>AchDuHeise</title>
 	</head>
-	<body>
+	<body class="center dark-mode">
 		<h1>AchDuHeise!</h1>
+		<p>Ein heise.de-Reader ohne Cookies oder Tracking-Skripte.</p>
 		<br />
 		<form method="post">
-			<label for="inputbar">heise.de Artikel-URL:</label><br />
-			<input id="inputbar" type="text" />
+			<label for="url-input">heise.de Artikel-URL:</label><br />
+			<input name="url-input" type="text" />
 			<input type="submit" value="Artikel lesen" />
 		</form>
 	</body>

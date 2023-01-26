@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, render_template, request
+from flask import Blueprint, jsonify, render_template, request, flash
 from src.scraping.scraper import scrape_article, Article
 
 index = Blueprint("index", __name__)
@@ -21,4 +21,12 @@ def show_index():
 
 @index.route("/", methods=["POST"])
 def process_form():
-    form_data = request.form
+    url = request.form["url-input"]
+    if not url:
+        return render_template("index.html"), 200
+    if not "heise.de/" in url:
+        return render_template("index.html"), 200
+    return (
+        render_template("article.html", article=scrape_article(url)),
+        200,
+    )
