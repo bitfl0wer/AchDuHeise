@@ -110,6 +110,11 @@ def _scrape_content(soup: BeautifulSoup()) -> str:
 
 
 def _scrape_date_time(soup: BeautifulSoup()) -> dict:
+    """
+    Scrapes the date and time of a news article from the soup object.
+    :param soup: the soup object
+    :return: a dictionary with the date and time
+    """
     output = {"date": None, "time": None}
     date_time = [
         span.get_text() for span in soup.find(class_="a-publish-info__datetime")
@@ -123,9 +128,27 @@ def _scrape_date_time(soup: BeautifulSoup()) -> dict:
         output["date"] = format_string(date_time[0])
     else:
         output["time"] = format_string(date_time[0])
-        output["date"] = datetime.date.today().strftime("%d.%m.%Y")
+        output["date"] = format_string(datetime.date.today().strftime("%d.%m.%Y"))
 
-    output["date"] = format_string(output.get("date"))
+    return output
+
+
+def _scrape_date_time(soup: BeautifulSoup()) -> dict:
+    output = {"date": None, "time": None}
+    date_time = [
+        span.get_text() for span in soup.find(class_="a-publish-info__datetime")
+    ]
+
+    date_time = remove_matching_elements(date_time, "\n")
+    date_time = remove_matching_elements(date_time, "\n    Uhr\n  ")
+
+    if len(date_time) > 1:
+        output["time"] = format_string(date_time[1])
+        output["date"] = format_string(date_time[0])
+    else:
+        output["time"] = format_string(date_time[0])
+        output["date"] = format_string(datetime.date.today().strftime("%d.%m.%Y"))
+
     return output
 
 
